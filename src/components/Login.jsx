@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-function Login() {
+function Login(props) {
   const [balance, setbalance] = useState();
   const [name, setname] = useState();
   const [phone, setphone] = useState();
@@ -16,15 +16,18 @@ function Login() {
     let passcode = document.getElementById('passcode').value;
     if (phone && passcode) {
       try {
-       const res = await axios.post('https://your-api-endpoint.com/', {phone, passcode });
-       console.log(phone + passcode);
-        const balance = res.data.balance;
-        const phone1 = res.data.phone;
-        const name = res.data.name;
-        setbalance(balance); 
-        setname(name);
-        setphone(phone1);
-        navigate('/account');
+       const res = await axios.post('http://localhost:3001/login', {phone, passcode });
+      //  console.log(res.data.balance);
+      props.setName(res.data.name);
+      props.setPhone(res.data.phone);
+      props.setBalance(res.data.balance);
+      navigate('/account');
+        // const balance = res.data.balance;
+        // const phone1 = res.data.phone;
+        // const name = res.data.name;
+        // setbalance(balance); 
+        // setname(name);
+        // setphone(phone1);
       } catch {
         toast.error('Failed to signup. Please check your inputs and try again.');
       }

@@ -15,11 +15,11 @@ function Signup() {
     return;
   }
     try{
-    await axios.post('/amrood.com//',{name,phone,passcode});
+    await axios.post('http://localhost:3001/signup',{name,phone,passcode});
     navigate('/login');
   }
   catch{
-    toast.error('Error while saving data');
+    toast.error('This Number already exists');
        }
   }
   return (

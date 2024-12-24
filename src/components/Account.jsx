@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Account() {
+function Account(props) {
   return (
     <div className="bg-gradient-to-t from-purple-800 via-indigo-600 to-blue-500 p-8 min-h-screen flex flex-col items-center justify-center text-white font-sans">
       <div className="bg-white text-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md">
@@ -10,10 +10,13 @@ function Account() {
         {/* User Details */}
         <div className="space-y-4 text-center">
           <p className="text-lg">
-            <span className="font-semibold">Your Name:</span> John Doe
+            <span className="font-semibold">Your Name:</span> {props.name || "Login Again"}
           </p>
           <p className="text-lg">
-            <span className="font-semibold">Your Balance:</span> PKR 50,000
+            <span className="font-semibold">Your Number:</span> {props.phone || "Login Again"}
+          </p>
+          <p className="text-lg">
+            <span className="font-semibold">Your Balance:</span> {props.balance}
           </p>
         </div>
         
